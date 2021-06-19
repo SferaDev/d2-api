@@ -2,11 +2,13 @@ import { HttpRequest } from "../repositories/HttpClientRepository";
 import { D2ApiDefinitionBase } from "./common";
 import { Model } from ".";
 
+export type D2ApiBackend = "xhr" | "fetch" | "engine";
+
 export interface D2ApiOptions {
     baseUrl?: string;
     apiVersion?: number;
     auth?: { username: string; password: string };
-    backend?: "xhr" | "fetch";
+    backend?: D2ApiBackend;
     timeout?: number;
 }
 

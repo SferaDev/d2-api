@@ -1,6 +1,6 @@
 import { AxiosHttpClientRepository } from "../data/AxiosHttpClientRepository";
 import { FetchHttpClientRepository } from "../data/FetchHttpClientRepository";
-import { HttpClientRepository } from "../repositories/HttpClientRepository";
+import { Credentials, HttpClientRepository } from "../repositories/HttpClientRepository";
 import { D2SchemaProperties } from "../schemas";
 import { cache, defineLazyCachedProperty } from "../utils/cache";
 import { joinPath } from "../utils/connection";
@@ -18,8 +18,9 @@ import { Metadata } from "./metadata";
 import { Model } from "./model";
 import { Sharing } from "./sharing";
 import { System } from "./system";
-import { D2ApiOptions, D2ApiRequest, IndexedModels } from "./types";
+import { D2ApiBackend, D2ApiOptions, D2ApiRequest, IndexedModels } from "./types";
 import { Maintenance } from "./maintenance";
+import { EngineHttpClientRepository } from "../data/EngineHttpClientRepository";
 
 export class D2ApiGeneric {
     public baseUrl: string;
@@ -29,11 +30,25 @@ export class D2ApiGeneric {
 
     public constructor(options?: D2ApiOptions) {
         const { baseUrl = "http://localhost:8080", apiVersion, auth, backend = "xhr", timeout } = options || {};
+
         this.baseUrl = baseUrl;
         this.apiPath = joinPath(baseUrl, "api", apiVersion ? String(apiVersion) : null);
-        const HttpClientRepositoryImpl = backend === "fetch" ? FetchHttpClientRepository : AxiosHttpClientRepository;
-        this.baseConnection = new HttpClientRepositoryImpl({ baseUrl, auth, timeout });
-        this.apiConnection = new HttpClientRepositoryImpl({ baseUrl: this.apiPath, auth, timeout });
+        this.baseConnection = this.getBackend(backend, { baseUrl, auth, timeout });
+        this.apiConnection = this.getBackend(backend, { baseUrl: this.apiPath, auth, timeout });
+    }
+
+    private getBackend(
+        backend: D2ApiBackend,
+        options: { baseUrl: string; auth?: Credentials; timeout?: number }
+    ): HttpClientRepository {
+        switch (backend) {
+            case "xhr":
+                return new AxiosHttpClientRepository(options);
+            case "fetch":
+                return new FetchHttpClientRepository(options);
+            case "engine":
+                return new EngineHttpClientRepository(options);
+        }
     }
 
     @cache()
