@@ -35,9 +35,7 @@ export class FetchHttpClientRepository implements HttpClientRepository {
 
         const baseHeaders: Record<string, string> = {
             Accept: "application/json, text/plain",
-            ...(data && dataType === "json"
-                ? { "Content-Type": "application/json;charset=UTF-8" }
-                : {}),
+            ...(data && dataType === "json" ? { "Content-Type": "application/json;charset=UTF-8" } : {}),
         };
 
         const authHeaders: Record<string, string> = auth

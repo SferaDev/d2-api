@@ -16,10 +16,7 @@ export class Sharing {
         return this.d2Api.get<SharingGetResponse>("/sharing", params);
     }
 
-    post(
-        params: SharingParams,
-        object: SharingObjectUpdate
-    ): D2ApiResponse<HttpResponse<undefined>> {
+    post(params: SharingParams, object: SharingObjectUpdate): D2ApiResponse<HttpResponse<undefined>> {
         return this.d2Api.post<HttpResponse<undefined>>("/sharing", params, { object });
     }
 }

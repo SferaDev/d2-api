@@ -3,10 +3,7 @@ import { Ref } from "./../schemas/base";
 import { D2ModelSchemaBase, Selector } from "./inference";
 import { TaskCategory } from "./system";
 
-export interface GetOptionValue<
-    D2ApiDefinition extends D2ApiDefinitionBase,
-    D2ModelSchema extends D2ModelSchemaBase
-> {
+export interface GetOptionValue<D2ApiDefinition extends D2ApiDefinitionBase, D2ModelSchema extends D2ModelSchemaBase> {
     fields: Selector<D2ModelSchema>;
     filter?: D2ApiDefinition["filter"];
 }
@@ -123,10 +120,7 @@ function isEmptyFilterValue(val: any): boolean {
     return val === undefined || val === null || val === "";
 }
 
-export function processFieldsFilterParams(
-    modelOptions: GetOptionGeneric,
-    modelName?: string
-): _.Dictionary<any> {
+export function processFieldsFilterParams(modelOptions: GetOptionGeneric, modelName?: string): _.Dictionary<any> {
     const join = (s: string) => _.compact([modelName, s]).join(":");
 
     return _.pickBy({
@@ -158,11 +152,7 @@ export interface HttpResponse<Response> {
 }
 
 export type PartialModel<T> = {
-    [P in keyof T]?: T[P] extends (infer U)[]
-        ? PartialModel<U>[]
-        : T[P] extends object
-        ? PartialModel<T[P]>
-        : T[P];
+    [P in keyof T]?: T[P] extends (infer U)[] ? PartialModel<U>[] : T[P] extends object ? PartialModel<T[P]> : T[P];
 };
 
 export type PartialPersistedModel<T> = PartialModel<T> & Ref;

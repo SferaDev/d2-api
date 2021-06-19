@@ -1734,13 +1734,7 @@ export type D2FileResource = {
     created: string;
     createdBy: D2User;
     displayName: string;
-    domain:
-        | "DATA_VALUE"
-        | "PUSH_ANALYSIS"
-        | "DOCUMENT"
-        | "MESSAGE_ATTACHMENT"
-        | "USER_AVATAR"
-        | "ORG_UNIT";
+    domain: "DATA_VALUE" | "PUSH_ANALYSIS" | "DOCUMENT" | "MESSAGE_ATTACHMENT" | "USER_AVATAR" | "ORG_UNIT";
     externalAccess: boolean;
     favorite: boolean;
     favorites: string[];
@@ -1950,14 +1944,7 @@ export type D2Interpretation = {
     sharing: any;
     text: string;
     translations: D2Translation[];
-    type:
-        | "VISUALIZATION"
-        | "REPORT_TABLE"
-        | "CHART"
-        | "MAP"
-        | "EVENT_REPORT"
-        | "EVENT_CHART"
-        | "DATASET_REPORT";
+    type: "VISUALIZATION" | "REPORT_TABLE" | "CHART" | "MAP" | "EVENT_REPORT" | "EVENT_CHART" | "DATASET_REPORT";
     user: D2User;
     userAccesses: D2UserAccess[];
     userGroupAccesses: D2UserGroupAccess[];
@@ -2006,14 +1993,7 @@ export type D2JobConfiguration = {
     href: string;
     id: Id;
     jobParameters: any;
-    jobStatus:
-        | "RUNNING"
-        | "COMPLETED"
-        | "STOPPED"
-        | "SCHEDULED"
-        | "DISABLED"
-        | "FAILED"
-        | "NOT_STARTED";
+    jobStatus: "RUNNING" | "COMPLETED" | "STOPPED" | "SCHEDULED" | "DISABLED" | "FAILED" | "NOT_STARTED";
     jobType:
         | "DATA_STATISTICS"
         | "DATA_INTEGRITY"
@@ -2054,14 +2034,7 @@ export type D2JobConfiguration = {
         | "ANALYTICSTABLE_UPDATE"
         | "PROGRAM_DATA_SYNC";
     lastExecuted: string;
-    lastExecutedStatus:
-        | "RUNNING"
-        | "COMPLETED"
-        | "STOPPED"
-        | "SCHEDULED"
-        | "DISABLED"
-        | "FAILED"
-        | "NOT_STARTED";
+    lastExecutedStatus: "RUNNING" | "COMPLETED" | "STOPPED" | "SCHEDULED" | "DISABLED" | "FAILED" | "NOT_STARTED";
     lastRuntimeExecution: string;
     lastUpdated: string;
     lastUpdatedBy: D2User;
@@ -2278,13 +2251,7 @@ export type D2MapView = {
     organisationUnitGroupSet: D2OrganisationUnitGroupSet;
     organisationUnitGroupSetDimensions: D2OrganisationUnitGroupSetDimension[];
     organisationUnitLevels: number[];
-    organisationUnitSelectionMode:
-        | "SELECTED"
-        | "CHILDREN"
-        | "DESCENDANTS"
-        | "ACCESSIBLE"
-        | "CAPTURE"
-        | "ALL";
+    organisationUnitSelectionMode: "SELECTED" | "CHILDREN" | "DESCENDANTS" | "ACCESSIBLE" | "CAPTURE" | "ALL";
     organisationUnits: D2OrganisationUnit[];
     parentGraph: string;
     parentGraphMap: D2Map;
@@ -6046,14 +6013,8 @@ export interface D2CategoryOptionGroupSetDimensionSchema {
         $all: Preset<D2CategoryOptionGroupSetDimension, keyof D2CategoryOptionGroupSetDimension>;
         $identifiable: Preset<D2CategoryOptionGroupSetDimension, FieldPresets["identifiable"]>;
         $nameable: Preset<D2CategoryOptionGroupSetDimension, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2CategoryOptionGroupSetDimension,
-            "categoryOptionGroups" | "categoryOptionGroupSet"
-        >;
-        $owner: Preset<
-            D2CategoryOptionGroupSetDimension,
-            "categoryOptionGroups" | "categoryOptionGroupSet"
-        >;
+        $persisted: Preset<D2CategoryOptionGroupSetDimension, "categoryOptionGroups" | "categoryOptionGroupSet">;
+        $owner: Preset<D2CategoryOptionGroupSetDimension, "categoryOptionGroups" | "categoryOptionGroupSet">;
     };
 }
 
@@ -6116,12 +6077,7 @@ export interface D2ChartSchema {
         filterDimensions: string[];
         filters: any[];
         formName: string;
-        hideEmptyRowItems:
-            | "NONE"
-            | "BEFORE_FIRST"
-            | "AFTER_LAST"
-            | "BEFORE_FIRST_AFTER_LAST"
-            | "ALL";
+        hideEmptyRowItems: "NONE" | "BEFORE_FIRST" | "AFTER_LAST" | "BEFORE_FIRST_AFTER_LAST" | "ALL";
         hideLegend: boolean;
         hideSubtitle: boolean;
         hideTitle: boolean;
@@ -7009,10 +6965,7 @@ export interface D2DataElementGroupSetDimensionSchema {
         $all: Preset<D2DataElementGroupSetDimension, keyof D2DataElementGroupSetDimension>;
         $identifiable: Preset<D2DataElementGroupSetDimension, FieldPresets["identifiable"]>;
         $nameable: Preset<D2DataElementGroupSetDimension, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2DataElementGroupSetDimension,
-            "dataElementGroups" | "dataElementGroupSet"
-        >;
+        $persisted: Preset<D2DataElementGroupSetDimension, "dataElementGroups" | "dataElementGroupSet">;
         $owner: Preset<D2DataElementGroupSetDimension, "dataElementGroups" | "dataElementGroupSet">;
     };
 }
@@ -7600,12 +7553,7 @@ export interface D2EventChartSchema {
         filterDimensions: string[];
         filters: any[];
         formName: string;
-        hideEmptyRowItems:
-            | "NONE"
-            | "BEFORE_FIRST"
-            | "AFTER_LAST"
-            | "BEFORE_FIRST_AFTER_LAST"
-            | "ALL";
+        hideEmptyRowItems: "NONE" | "BEFORE_FIRST" | "AFTER_LAST" | "BEFORE_FIRST_AFTER_LAST" | "ALL";
         hideLegend: boolean;
         hideNaData: boolean;
         hideSubtitle: boolean;
@@ -8086,24 +8034,15 @@ export interface D2ExpressionSchema {
     fields: {
         description: string;
         expression: string;
-        missingValueStrategy:
-            | "SKIP_IF_ANY_VALUE_MISSING"
-            | "SKIP_IF_ALL_VALUES_MISSING"
-            | "NEVER_SKIP";
+        missingValueStrategy: "SKIP_IF_ANY_VALUE_MISSING" | "SKIP_IF_ALL_VALUES_MISSING" | "NEVER_SKIP";
         slidingWindow: boolean;
     };
     fieldPresets: {
         $all: Preset<D2Expression, keyof D2Expression>;
         $identifiable: Preset<D2Expression, FieldPresets["identifiable"]>;
         $nameable: Preset<D2Expression, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2Expression,
-            "description" | "expression" | "missingValueStrategy" | "slidingWindow"
-        >;
-        $owner: Preset<
-            D2Expression,
-            "description" | "expression" | "missingValueStrategy" | "slidingWindow"
-        >;
+        $persisted: Preset<D2Expression, "description" | "expression" | "missingValueStrategy" | "slidingWindow">;
+        $owner: Preset<D2Expression, "description" | "expression" | "missingValueStrategy" | "slidingWindow">;
     };
 }
 
@@ -8141,25 +8080,11 @@ export interface D2ExternalFileResourceSchema {
         $nameable: Preset<D2ExternalFileResource, FieldPresets["nameable"]>;
         $persisted: Preset<
             D2ExternalFileResource,
-            | "expires"
-            | "code"
-            | "lastUpdated"
-            | "id"
-            | "lastUpdatedBy"
-            | "created"
-            | "accessToken"
-            | "fileResource"
+            "expires" | "code" | "lastUpdated" | "id" | "lastUpdatedBy" | "created" | "accessToken" | "fileResource"
         >;
         $owner: Preset<
             D2ExternalFileResource,
-            | "expires"
-            | "code"
-            | "lastUpdated"
-            | "id"
-            | "lastUpdatedBy"
-            | "created"
-            | "accessToken"
-            | "fileResource"
+            "expires" | "code" | "lastUpdated" | "id" | "lastUpdatedBy" | "created" | "accessToken" | "fileResource"
         >;
     };
 }
@@ -8257,13 +8182,7 @@ export interface D2FileResourceSchema {
         created: string;
         createdBy: D2UserSchema;
         displayName: string;
-        domain:
-            | "DATA_VALUE"
-            | "PUSH_ANALYSIS"
-            | "DOCUMENT"
-            | "MESSAGE_ATTACHMENT"
-            | "USER_AVATAR"
-            | "ORG_UNIT";
+        domain: "DATA_VALUE" | "PUSH_ANALYSIS" | "DOCUMENT" | "MESSAGE_ATTACHMENT" | "USER_AVATAR" | "ORG_UNIT";
         externalAccess: boolean;
         favorite: boolean;
         favorites: string[];
@@ -8644,27 +8563,11 @@ export interface D2IndicatorTypeSchema {
         $nameable: Preset<D2IndicatorType, FieldPresets["nameable"]>;
         $persisted: Preset<
             D2IndicatorType,
-            | "lastUpdatedBy"
-            | "code"
-            | "created"
-            | "lastUpdated"
-            | "number"
-            | "translations"
-            | "name"
-            | "id"
-            | "factor"
+            "lastUpdatedBy" | "code" | "created" | "lastUpdated" | "number" | "translations" | "name" | "id" | "factor"
         >;
         $owner: Preset<
             D2IndicatorType,
-            | "lastUpdatedBy"
-            | "code"
-            | "created"
-            | "lastUpdated"
-            | "number"
-            | "translations"
-            | "name"
-            | "id"
-            | "factor"
+            "lastUpdatedBy" | "code" | "created" | "lastUpdated" | "number" | "translations" | "name" | "id" | "factor"
         >;
     };
 }
@@ -8703,14 +8606,7 @@ export interface D2InterpretationSchema {
         sharing: any;
         text: string;
         translations: D2Translation[];
-        type:
-            | "VISUALIZATION"
-            | "REPORT_TABLE"
-            | "CHART"
-            | "MAP"
-            | "EVENT_REPORT"
-            | "EVENT_CHART"
-            | "DATASET_REPORT";
+        type: "VISUALIZATION" | "REPORT_TABLE" | "CHART" | "MAP" | "EVENT_REPORT" | "EVENT_CHART" | "DATASET_REPORT";
         user: D2UserSchema;
         userAccesses: D2UserAccessSchema[];
         userGroupAccesses: D2UserGroupAccessSchema[];
@@ -8798,10 +8694,7 @@ export interface D2InterpretationCommentSchema {
             D2InterpretationComment,
             "created" | "lastUpdated" | "createdBy" | "mentions" | "text" | "id"
         >;
-        $owner: Preset<
-            D2InterpretationComment,
-            "created" | "lastUpdated" | "createdBy" | "mentions" | "text" | "id"
-        >;
+        $owner: Preset<D2InterpretationComment, "created" | "lastUpdated" | "createdBy" | "mentions" | "text" | "id">;
     };
 }
 
@@ -8825,14 +8718,7 @@ export interface D2JobConfigurationSchema {
         href: string;
         id: Id;
         jobParameters: any;
-        jobStatus:
-            | "RUNNING"
-            | "COMPLETED"
-            | "STOPPED"
-            | "SCHEDULED"
-            | "DISABLED"
-            | "FAILED"
-            | "NOT_STARTED";
+        jobStatus: "RUNNING" | "COMPLETED" | "STOPPED" | "SCHEDULED" | "DISABLED" | "FAILED" | "NOT_STARTED";
         jobType:
             | "DATA_STATISTICS"
             | "DATA_INTEGRITY"
@@ -8873,14 +8759,7 @@ export interface D2JobConfigurationSchema {
             | "ANALYTICSTABLE_UPDATE"
             | "PROGRAM_DATA_SYNC";
         lastExecuted: string;
-        lastExecutedStatus:
-            | "RUNNING"
-            | "COMPLETED"
-            | "STOPPED"
-            | "SCHEDULED"
-            | "DISABLED"
-            | "FAILED"
-            | "NOT_STARTED";
+        lastExecutedStatus: "RUNNING" | "COMPLETED" | "STOPPED" | "SCHEDULED" | "DISABLED" | "FAILED" | "NOT_STARTED";
         lastRuntimeExecution: string;
         lastUpdated: string;
         lastUpdatedBy: D2UserSchema;
@@ -8977,27 +8856,11 @@ export interface D2KeyJsonValueSchema {
         $nameable: Preset<D2KeyJsonValue, FieldPresets["nameable"]>;
         $persisted: Preset<
             D2KeyJsonValue,
-            | "code"
-            | "lastUpdated"
-            | "id"
-            | "key"
-            | "lastUpdatedBy"
-            | "created"
-            | "sharing"
-            | "createdBy"
-            | "namespace"
+            "code" | "lastUpdated" | "id" | "key" | "lastUpdatedBy" | "created" | "sharing" | "createdBy" | "namespace"
         >;
         $owner: Preset<
             D2KeyJsonValue,
-            | "code"
-            | "lastUpdated"
-            | "id"
-            | "key"
-            | "lastUpdatedBy"
-            | "created"
-            | "sharing"
-            | "createdBy"
-            | "namespace"
+            "code" | "lastUpdated" | "id" | "key" | "lastUpdatedBy" | "created" | "sharing" | "createdBy" | "namespace"
         >;
     };
 }
@@ -9307,13 +9170,7 @@ export interface D2MapViewSchema {
         organisationUnitGroupSet: D2OrganisationUnitGroupSetSchema;
         organisationUnitGroupSetDimensions: D2OrganisationUnitGroupSetDimensionSchema[];
         organisationUnitLevels: number[];
-        organisationUnitSelectionMode:
-            | "SELECTED"
-            | "CHILDREN"
-            | "DESCENDANTS"
-            | "ACCESSIBLE"
-            | "CAPTURE"
-            | "ALL";
+        organisationUnitSelectionMode: "SELECTED" | "CHILDREN" | "DESCENDANTS" | "ACCESSIBLE" | "CAPTURE" | "ALL";
         organisationUnits: D2OrganisationUnitSchema[];
         parentGraph: string;
         parentGraphMap: D2MapSchema;
@@ -9602,27 +9459,11 @@ export interface D2MetadataVersionSchema {
         $nameable: Preset<D2MetadataVersion, FieldPresets["nameable"]>;
         $persisted: Preset<
             D2MetadataVersion,
-            | "code"
-            | "type"
-            | "lastUpdated"
-            | "importDate"
-            | "hashCode"
-            | "id"
-            | "lastUpdatedBy"
-            | "created"
-            | "name"
+            "code" | "type" | "lastUpdated" | "importDate" | "hashCode" | "id" | "lastUpdatedBy" | "created" | "name"
         >;
         $owner: Preset<
             D2MetadataVersion,
-            | "code"
-            | "type"
-            | "lastUpdated"
-            | "importDate"
-            | "hashCode"
-            | "id"
-            | "lastUpdatedBy"
-            | "created"
-            | "name"
+            "code" | "type" | "lastUpdated" | "importDate" | "hashCode" | "id" | "lastUpdatedBy" | "created" | "name"
         >;
     };
 }
@@ -9642,14 +9483,8 @@ export interface D2MinMaxDataElementSchema {
         $all: Preset<D2MinMaxDataElement, keyof D2MinMaxDataElement>;
         $identifiable: Preset<D2MinMaxDataElement, FieldPresets["identifiable"]>;
         $nameable: Preset<D2MinMaxDataElement, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2MinMaxDataElement,
-            "min" | "generated" | "max" | "dataElement" | "source" | "optionCombo"
-        >;
-        $owner: Preset<
-            D2MinMaxDataElement,
-            "min" | "generated" | "max" | "dataElement" | "source" | "optionCombo"
-        >;
+        $persisted: Preset<D2MinMaxDataElement, "min" | "generated" | "max" | "dataElement" | "source" | "optionCombo">;
+        $owner: Preset<D2MinMaxDataElement, "min" | "generated" | "max" | "dataElement" | "source" | "optionCombo">;
     };
 }
 
@@ -10510,20 +10345,11 @@ export interface D2OrganisationUnitGroupSetDimensionSchema {
         organisationUnitGroups: any;
     };
     fieldPresets: {
-        $all: Preset<
-            D2OrganisationUnitGroupSetDimension,
-            keyof D2OrganisationUnitGroupSetDimension
-        >;
+        $all: Preset<D2OrganisationUnitGroupSetDimension, keyof D2OrganisationUnitGroupSetDimension>;
         $identifiable: Preset<D2OrganisationUnitGroupSetDimension, FieldPresets["identifiable"]>;
         $nameable: Preset<D2OrganisationUnitGroupSetDimension, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2OrganisationUnitGroupSetDimension,
-            "organisationUnitGroupSet" | "organisationUnitGroups"
-        >;
-        $owner: Preset<
-            D2OrganisationUnitGroupSetDimension,
-            "organisationUnitGroupSet" | "organisationUnitGroups"
-        >;
+        $persisted: Preset<D2OrganisationUnitGroupSetDimension, "organisationUnitGroupSet" | "organisationUnitGroups">;
+        $owner: Preset<D2OrganisationUnitGroupSetDimension, "organisationUnitGroupSet" | "organisationUnitGroups">;
     };
 }
 
@@ -12415,14 +12241,8 @@ export interface D2ProgramTrackedEntityAttributeDimensionItemSchema {
         userGroupAccesses: D2UserGroupAccessSchema[];
     };
     fieldPresets: {
-        $all: Preset<
-            D2ProgramTrackedEntityAttributeDimensionItem,
-            keyof D2ProgramTrackedEntityAttributeDimensionItem
-        >;
-        $identifiable: Preset<
-            D2ProgramTrackedEntityAttributeDimensionItem,
-            FieldPresets["identifiable"]
-        >;
+        $all: Preset<D2ProgramTrackedEntityAttributeDimensionItem, keyof D2ProgramTrackedEntityAttributeDimensionItem>;
+        $identifiable: Preset<D2ProgramTrackedEntityAttributeDimensionItem, FieldPresets["identifiable"]>;
         $nameable: Preset<D2ProgramTrackedEntityAttributeDimensionItem, FieldPresets["nameable"]>;
         $persisted: Preset<D2ProgramTrackedEntityAttributeDimensionItem, never>;
         $owner: Preset<D2ProgramTrackedEntityAttributeDimensionItem, never>;
@@ -12463,10 +12283,7 @@ export interface D2ProgramTrackedEntityAttributeGroupSchema {
         userGroupAccesses: D2UserGroupAccessSchema[];
     };
     fieldPresets: {
-        $all: Preset<
-            D2ProgramTrackedEntityAttributeGroup,
-            keyof D2ProgramTrackedEntityAttributeGroup
-        >;
+        $all: Preset<D2ProgramTrackedEntityAttributeGroup, keyof D2ProgramTrackedEntityAttributeGroup>;
         $identifiable: Preset<D2ProgramTrackedEntityAttributeGroup, FieldPresets["identifiable"]>;
         $nameable: Preset<D2ProgramTrackedEntityAttributeGroup, FieldPresets["nameable"]>;
         $persisted: Preset<
@@ -13469,20 +13286,14 @@ export interface D2TrackedEntityDataElementDimensionSchema {
         programStage: D2ProgramStageSchema;
     };
     fieldPresets: {
-        $all: Preset<
-            D2TrackedEntityDataElementDimension,
-            keyof D2TrackedEntityDataElementDimension
-        >;
+        $all: Preset<D2TrackedEntityDataElementDimension, keyof D2TrackedEntityDataElementDimension>;
         $identifiable: Preset<D2TrackedEntityDataElementDimension, FieldPresets["identifiable"]>;
         $nameable: Preset<D2TrackedEntityDataElementDimension, FieldPresets["nameable"]>;
         $persisted: Preset<
             D2TrackedEntityDataElementDimension,
             "filter" | "legendSet" | "programStage" | "dataElement"
         >;
-        $owner: Preset<
-            D2TrackedEntityDataElementDimension,
-            "filter" | "legendSet" | "programStage" | "dataElement"
-        >;
+        $owner: Preset<D2TrackedEntityDataElementDimension, "filter" | "legendSet" | "programStage" | "dataElement">;
     };
 }
 
@@ -13658,23 +13469,11 @@ export interface D2TrackedEntityProgramIndicatorDimensionSchema {
         programIndicator: D2ProgramIndicatorSchema;
     };
     fieldPresets: {
-        $all: Preset<
-            D2TrackedEntityProgramIndicatorDimension,
-            keyof D2TrackedEntityProgramIndicatorDimension
-        >;
-        $identifiable: Preset<
-            D2TrackedEntityProgramIndicatorDimension,
-            FieldPresets["identifiable"]
-        >;
+        $all: Preset<D2TrackedEntityProgramIndicatorDimension, keyof D2TrackedEntityProgramIndicatorDimension>;
+        $identifiable: Preset<D2TrackedEntityProgramIndicatorDimension, FieldPresets["identifiable"]>;
         $nameable: Preset<D2TrackedEntityProgramIndicatorDimension, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2TrackedEntityProgramIndicatorDimension,
-            "filter" | "legendSet" | "programIndicator"
-        >;
-        $owner: Preset<
-            D2TrackedEntityProgramIndicatorDimension,
-            "filter" | "legendSet" | "programIndicator"
-        >;
+        $persisted: Preset<D2TrackedEntityProgramIndicatorDimension, "filter" | "legendSet" | "programIndicator">;
+        $owner: Preset<D2TrackedEntityProgramIndicatorDimension, "filter" | "legendSet" | "programIndicator">;
     };
 }
 
@@ -14324,14 +14123,8 @@ export interface D2ValidationResultSchema {
         $all: Preset<D2ValidationResult, keyof D2ValidationResult>;
         $identifiable: Preset<D2ValidationResult, FieldPresets["identifiable"]>;
         $nameable: Preset<D2ValidationResult, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2ValidationResult,
-            "created" | "rightsideValue" | "leftsideValue" | "notificationSent"
-        >;
-        $owner: Preset<
-            D2ValidationResult,
-            "created" | "rightsideValue" | "leftsideValue" | "notificationSent"
-        >;
+        $persisted: Preset<D2ValidationResult, "created" | "rightsideValue" | "leftsideValue" | "notificationSent">;
+        $owner: Preset<D2ValidationResult, "created" | "rightsideValue" | "leftsideValue" | "notificationSent">;
     };
 }
 
@@ -14608,12 +14401,7 @@ export interface D2VisualizationSchema {
         fontStyle: any;
         formName: string;
         hideEmptyColumns: boolean;
-        hideEmptyRowItems:
-            | "NONE"
-            | "BEFORE_FIRST"
-            | "AFTER_LAST"
-            | "BEFORE_FIRST_AFTER_LAST"
-            | "ALL";
+        hideEmptyRowItems: "NONE" | "BEFORE_FIRST" | "AFTER_LAST" | "BEFORE_FIRST_AFTER_LAST" | "ALL";
         hideEmptyRows: boolean;
         hideLegend: boolean;
         hideSubtitle: boolean;

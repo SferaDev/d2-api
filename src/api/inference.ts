@@ -30,9 +30,7 @@ export type Selector<ModelSchema extends D2ModelSchemaBase> = {
               IsLiteral<ModelSchema["fields"][Key]>,
               boolean, // TODO: functions
               ModelSchema["fields"][Key] extends Array<infer T>
-                  ? (
-                        | boolean
-                        | (T extends D2ModelSchemaBase ? Selector<T> : never)) /* | functions | */
+                  ? boolean | (T extends D2ModelSchemaBase ? Selector<T> : never) /* | functions | */
                   : ModelSchema["fields"][Key] extends D2ModelSchemaBase
                   ? Selector<ModelSchema["fields"][Key]>
                   : ModelSchema["fields"][Key]
@@ -42,17 +40,16 @@ export type Selector<ModelSchema extends D2ModelSchemaBase> = {
         [K in FieldPreset]?: boolean;
     };
 
-export type ValidateSameKeys<SM, ModelSelector> = Exclude<
-    keyof SM,
-    keyof ModelSelector
-> extends never
+export type ValidateSameKeys<SM, ModelSelector> = Exclude<keyof SM, keyof ModelSelector> extends never
     ? ModelSelector
     : { error: "Unknown keys in selector"; keys: Exclude<keyof SM, keyof ModelSelector> };
 
-export type SelectedPickValidated<
-    Model extends D2ModelSchemaBase,
-    SM
-> = SM extends ValidateSameKeys<SM, Selector<Model>> ? SelectedPick<Model, SM> : never;
+export type SelectedPickValidated<Model extends D2ModelSchemaBase, SM> = SM extends ValidateSameKeys<
+    SM,
+    Selector<Model>
+>
+    ? SelectedPick<Model, SM>
+    : never;
 
 export interface D2ModelSchemaBase {
     name: string;
@@ -63,11 +60,7 @@ export interface D2ModelSchemaBase {
     };
 }
 
-type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends ((
-    k: infer I
-) => void)
-    ? I
-    : never;
+type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
 
 export type SelectedPick<
     Schema extends D2ModelSchemaBase,
@@ -86,17 +79,19 @@ type SelectorKey<
         ? T extends D2ModelSchemaBase
             ? SelectedPickValidated<T, ModelSelector[K]>[]
             : T
-        : (Model["fields"][K] extends D2ModelSchemaBase
-              ? SelectedPickValidated<Model["fields"][K], ModelSelector[K]>
-              : Model["fields"][K])
+        : Model["fields"][K] extends D2ModelSchemaBase
+        ? SelectedPickValidated<Model["fields"][K], ModelSelector[K]>
+        : Model["fields"][K]
     : ModelSelector[K] extends true
-    ? (IsLiteral<Model["fields"][K]> extends true
-          ? Model["fields"][K]
-          : GetTrueSelectionOnNonLiteral<Model["fields"][K]>)
+    ? IsLiteral<Model["fields"][K]> extends true
+        ? Model["fields"][K]
+        : GetTrueSelectionOnNonLiteral<Model["fields"][K]>
     : never;
 
 type GetTrueSelectionOnNonLiteral<SchemaValue> = SchemaValue extends Array<infer T>
-    ? (T extends { fieldPresets: any } ? Ref[] : T[])
+    ? T extends { fieldPresets: any }
+        ? Ref[]
+        : T[]
     : SchemaValue extends { fieldPresets: any }
     ? Ref
     : SchemaValue;
@@ -106,10 +101,7 @@ type Function = {
     size: { name: "size" };
 };
 
-export type SelectedPickFields<
-    Model extends D2ModelSchemaBase,
-    ModelSelector extends Selector<Model>
-> = GetValues<
+export type SelectedPickFields<Model extends D2ModelSchemaBase, ModelSelector extends Selector<Model>> = GetValues<
     {
         [Key in keyof ModelSelector & keyof Model["fields"]]: ModelSelector[Key] extends {
             $fn: Function[keyof Function];

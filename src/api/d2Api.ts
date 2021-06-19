@@ -28,12 +28,10 @@ export class D2ApiGeneric {
     apiConnection: HttpClientRepository;
 
     public constructor(options?: D2ApiOptions) {
-        const { baseUrl = "http://localhost:8080", apiVersion, auth, backend = "xhr", timeout } =
-            options || {};
+        const { baseUrl = "http://localhost:8080", apiVersion, auth, backend = "xhr", timeout } = options || {};
         this.baseUrl = baseUrl;
         this.apiPath = joinPath(baseUrl, "api", apiVersion ? String(apiVersion) : null);
-        const HttpClientRepositoryImpl =
-            backend === "fetch" ? FetchHttpClientRepository : AxiosHttpClientRepository;
+        const HttpClientRepositoryImpl = backend === "fetch" ? FetchHttpClientRepository : AxiosHttpClientRepository;
         this.baseConnection = new HttpClientRepositoryImpl({ baseUrl, auth, timeout });
         this.apiConnection = new HttpClientRepositoryImpl({ baseUrl: this.apiPath, auth, timeout });
     }
@@ -71,20 +69,14 @@ export class D2ApiGeneric {
     }
 }
 
-export abstract class D2ApiVersioned<
-    D2ApiDefinition extends D2ApiDefinitionBase
-> extends D2ApiGeneric {
+export abstract class D2ApiVersioned<D2ApiDefinition extends D2ApiDefinitionBase> extends D2ApiGeneric {
     getIndexedModels(
         modelClass: any,
         modelKeys: Array<keyof D2ApiDefinition["schemas"]>
     ): IndexedModels<D2ApiDefinition> {
         const indexedModels: Partial<IndexedModels<D2ApiDefinition>> = {};
         modelKeys.forEach(key => {
-            defineLazyCachedProperty(
-                indexedModels,
-                key,
-                () => new modelClass(this, this.schemaModels[key])
-            );
+            defineLazyCachedProperty(indexedModels, key, () => new modelClass(this, this.schemaModels[key]));
         });
         return indexedModels as IndexedModels<D2ApiDefinition>;
     }

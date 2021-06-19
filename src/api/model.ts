@@ -61,15 +61,9 @@ export interface GetParams {
     order?: string;
 }
 
-type GetObject<D2ModelSchema extends D2ModelSchemaBase, Options> = SelectedPick<
-    D2ModelSchema,
-    GetFields<Options>
->;
+type GetObject<D2ModelSchema extends D2ModelSchemaBase, Options> = SelectedPick<D2ModelSchema, GetFields<Options>>;
 
-export class Model<
-    D2ApiDefinition extends D2ApiDefinitionBase,
-    D2ModelSchema extends D2ModelSchemaBase
-> {
+export class Model<D2ApiDefinition extends D2ApiDefinitionBase, D2ModelSchema extends D2ModelSchemaBase> {
     constructor(private d2Api: D2ApiGeneric, public schema: D2SchemaProperties) {}
 
     get modelName(): D2ModelSchema["name"] {
@@ -86,10 +80,7 @@ export class Model<
         Obj = GetObject<D2ModelSchema, Options>
     >(options: Options): D2ApiResponse<NonPaginatedObjects<Obj>>;
 
-    get<
-        Options extends GetOptions<D2ApiDefinition, D2ModelSchema>,
-        Obj = GetObject<D2ModelSchema, Options>
-    >(
+    get<Options extends GetOptions<D2ApiDefinition, D2ModelSchema>, Obj = GetObject<D2ModelSchema, Options>>(
         options: Options
     ): D2ApiResponse<PaginatedObjects<Obj>> | D2ApiResponse<NonPaginatedObjects<Obj>> {
         const paramsFieldsFilter = processFieldsFilterParams(options as any);
@@ -119,11 +110,7 @@ export class Model<
         payload: PartialPersistedModel<D2ModelSchema["model"]>,
         options?: Partial<UpdateOptions>
     ): D2ApiResponse<ModelResponse> {
-        return this.d2Api.put(
-            [this.modelName, payload.id].join("/"),
-            (options || {}) as Params,
-            payload
-        );
+        return this.d2Api.put([this.modelName, payload.id].join("/"), (options || {}) as Params, payload);
     }
 
     delete(payload: PartialPersistedModel<D2ModelSchema["model"]>): D2ApiResponse<ModelResponse> {

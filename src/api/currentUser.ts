@@ -1,10 +1,5 @@
 import { SelectedPick, D2ModelSchemaBase } from "./inference";
-import {
-    D2ApiResponse,
-    processFieldsFilterParams,
-    D2ModelSchemasBase,
-    D2ApiDefinitionBase,
-} from "./common";
+import { D2ApiResponse, processFieldsFilterParams, D2ModelSchemasBase, D2ApiDefinitionBase } from "./common";
 import { D2ApiGeneric } from "./d2Api";
 import { Selector } from "./inference";
 
@@ -63,10 +58,9 @@ export class CurrentUser<
         this.api = api;
     }
 
-    get<
-        Options extends GetOptions<SchemasE>,
-        User = SelectedPick<MeSchema<SchemasE>, Options["fields"]>
-    >(options: Options): D2ApiResponse<User> {
+    get<Options extends GetOptions<SchemasE>, User = SelectedPick<MeSchema<SchemasE>, Options["fields"]>>(
+        options: Options
+    ): D2ApiResponse<User> {
         const params = processFieldsFilterParams(options as any);
         return this.api.get<User>("/me", params);
     }

@@ -132,11 +132,7 @@ export interface FieldPresets {
 
 export type Preset<Model, Properties> = OmitNever<
     {
-        [K in Properties & keyof Model]: Model[K] extends Ref
-            ? Ref
-            : Model[K] extends Array<Ref>
-            ? Ref[]
-            : Model[K];
+        [K in Properties & keyof Model]: Model[K] extends Ref ? Ref : Model[K] extends Array<Ref> ? Ref[] : Model[K];
     }
 >;
 

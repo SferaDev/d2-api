@@ -80,14 +80,11 @@ export class Metadata<D2ApiDefinition extends D2ApiDefinitionBase> {
         this.d2Api = d2Api;
     }
 
-    get<
-        RootSelectorE extends RootSelector<D2ApiDefinition>,
-        Data = MetadataPickBase<D2ApiDefinition, RootSelectorE>
-    >(selector: RootSelectorE): D2ApiResponse<Data> {
+    get<RootSelectorE extends RootSelector<D2ApiDefinition>, Data = MetadataPickBase<D2ApiDefinition, RootSelectorE>>(
+        selector: RootSelectorE
+    ): D2ApiResponse<Data> {
         const metadataOptions = _(selector)
-            .map((modelOptions, modelName) =>
-                processFieldsFilterParams(modelOptions as any, modelName)
-            )
+            .map((modelOptions, modelName) => processFieldsFilterParams(modelOptions as any, modelName))
             .reduce(_.merge, {});
         const apiResponse = this.d2Api.get<Data>("/metadata", metadataOptions);
 

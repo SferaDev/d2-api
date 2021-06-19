@@ -2625,16 +2625,7 @@ export type D2EventChart = {
     title: string;
     topLimit: number;
     translations: D2Translation[];
-    type:
-        | "COLUMN"
-        | "STACKED_COLUMN"
-        | "BAR"
-        | "STACKED_BAR"
-        | "LINE"
-        | "AREA"
-        | "PIE"
-        | "RADAR"
-        | "GAUGE";
+    type: "COLUMN" | "STACKED_COLUMN" | "BAR" | "STACKED_BAR" | "LINE" | "AREA" | "PIE" | "RADAR" | "GAUGE";
     user: D2User;
     userAccesses: D2UserAccess[];
     userGroupAccesses: D2UserGroupAccess[];
@@ -2946,13 +2937,7 @@ export type D2MapView = {
     organisationUnitGroupSet: D2OrganisationUnitGroupSet;
     organisationUnitGroupSetDimensions: D2OrganisationUnitGroupSetDimension[];
     organisationUnitLevels: number[];
-    organisationUnitSelectionMode:
-        | "SELECTED"
-        | "CHILDREN"
-        | "DESCENDANTS"
-        | "ACCESSIBLE"
-        | "CAPTURE"
-        | "ALL";
+    organisationUnitSelectionMode: "SELECTED" | "CHILDREN" | "DESCENDANTS" | "ACCESSIBLE" | "CAPTURE" | "ALL";
     organisationUnits: D2OrganisationUnit[];
     parentGraph: string;
     parentGraphMap: D2Map;
@@ -3174,16 +3159,7 @@ export type D2Chart = {
     title: string;
     topLimit: number;
     translations: D2Translation[];
-    type:
-        | "COLUMN"
-        | "STACKED_COLUMN"
-        | "BAR"
-        | "STACKED_BAR"
-        | "LINE"
-        | "AREA"
-        | "PIE"
-        | "RADAR"
-        | "GAUGE";
+    type: "COLUMN" | "STACKED_COLUMN" | "BAR" | "STACKED_BAR" | "LINE" | "AREA" | "PIE" | "RADAR" | "GAUGE";
     user: D2User;
     userAccesses: D2UserAccess[];
     userGroupAccesses: D2UserGroupAccess[];
@@ -4822,14 +4798,8 @@ export interface D2ExternalFileResourceSchema {
         $all: Preset<D2ExternalFileResource, keyof D2ExternalFileResource>;
         $identifiable: Preset<D2ExternalFileResource, FieldPresets["identifiable"]>;
         $nameable: Preset<D2ExternalFileResource, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2ExternalFileResource,
-            "lastUpdatedBy" | "code" | "created" | "lastUpdated" | "id"
-        >;
-        $owner: Preset<
-            D2ExternalFileResource,
-            "lastUpdatedBy" | "code" | "created" | "lastUpdated" | "id"
-        >;
+        $persisted: Preset<D2ExternalFileResource, "lastUpdatedBy" | "code" | "created" | "lastUpdated" | "id">;
+        $owner: Preset<D2ExternalFileResource, "lastUpdatedBy" | "code" | "created" | "lastUpdated" | "id">;
     };
 }
 
@@ -5161,13 +5131,7 @@ export interface D2JobConfigurationSchema {
             | "LEADER_RENEWAL"
             | "COMPLETE_DATA_SET_REGISTRATION_IMPORT";
         lastExecuted: string;
-        lastExecutedStatus:
-            | "RUNNING"
-            | "COMPLETED"
-            | "STOPPED"
-            | "SCHEDULED"
-            | "DISABLED"
-            | "FAILED";
+        lastExecutedStatus: "RUNNING" | "COMPLETED" | "STOPPED" | "SCHEDULED" | "DISABLED" | "FAILED";
         lastRuntimeExecution: string;
         lastUpdated: string;
         lastUpdatedBy: D2UserSchema;
@@ -5633,25 +5597,11 @@ export interface D2ColorSetSchema {
         $nameable: Preset<D2ColorSet, FieldPresets["nameable"]>;
         $persisted: Preset<
             D2ColorSet,
-            | "lastUpdatedBy"
-            | "code"
-            | "created"
-            | "colors"
-            | "lastUpdated"
-            | "translations"
-            | "name"
-            | "id"
+            "lastUpdatedBy" | "code" | "created" | "colors" | "lastUpdated" | "translations" | "name" | "id"
         >;
         $owner: Preset<
             D2ColorSet,
-            | "lastUpdatedBy"
-            | "code"
-            | "created"
-            | "colors"
-            | "lastUpdated"
-            | "translations"
-            | "name"
-            | "id"
+            "lastUpdatedBy" | "code" | "created" | "colors" | "lastUpdated" | "translations" | "name" | "id"
         >;
     };
 }
@@ -7114,27 +7064,11 @@ export interface D2IndicatorTypeSchema {
         $nameable: Preset<D2IndicatorType, FieldPresets["nameable"]>;
         $persisted: Preset<
             D2IndicatorType,
-            | "lastUpdatedBy"
-            | "code"
-            | "created"
-            | "lastUpdated"
-            | "number"
-            | "translations"
-            | "name"
-            | "id"
-            | "factor"
+            "lastUpdatedBy" | "code" | "created" | "lastUpdated" | "number" | "translations" | "name" | "id" | "factor"
         >;
         $owner: Preset<
             D2IndicatorType,
-            | "lastUpdatedBy"
-            | "code"
-            | "created"
-            | "lastUpdated"
-            | "number"
-            | "translations"
-            | "name"
-            | "id"
-            | "factor"
+            "lastUpdatedBy" | "code" | "created" | "lastUpdated" | "number" | "translations" | "name" | "id" | "factor"
         >;
     };
 }
@@ -8752,10 +8686,7 @@ export interface D2ProgramTrackedEntityAttributeGroupSchema {
         userGroupAccesses: D2UserGroupAccessSchema[];
     };
     fieldPresets: {
-        $all: Preset<
-            D2ProgramTrackedEntityAttributeGroup,
-            keyof D2ProgramTrackedEntityAttributeGroup
-        >;
+        $all: Preset<D2ProgramTrackedEntityAttributeGroup, keyof D2ProgramTrackedEntityAttributeGroup>;
         $identifiable: Preset<D2ProgramTrackedEntityAttributeGroup, FieldPresets["identifiable"]>;
         $nameable: Preset<D2ProgramTrackedEntityAttributeGroup, FieldPresets["nameable"]>;
         $persisted: Preset<
@@ -9658,12 +9589,7 @@ export interface D2EventChartSchema {
         favorites: string[];
         filterDimensions: string[];
         filters: any[];
-        hideEmptyRowItems:
-            | "NONE"
-            | "BEFORE_FIRST"
-            | "AFTER_LAST"
-            | "BEFORE_FIRST_AFTER_LAST"
-            | "ALL";
+        hideEmptyRowItems: "NONE" | "BEFORE_FIRST" | "AFTER_LAST" | "BEFORE_FIRST_AFTER_LAST" | "ALL";
         hideLegend: boolean;
         hideNaData: boolean;
         hideSubtitle: boolean;
@@ -9712,16 +9638,7 @@ export interface D2EventChartSchema {
         title: string;
         topLimit: number;
         translations: D2Translation[];
-        type:
-            | "COLUMN"
-            | "STACKED_COLUMN"
-            | "BAR"
-            | "STACKED_BAR"
-            | "LINE"
-            | "AREA"
-            | "PIE"
-            | "RADAR"
-            | "GAUGE";
+        type: "COLUMN" | "STACKED_COLUMN" | "BAR" | "STACKED_BAR" | "LINE" | "AREA" | "PIE" | "RADAR" | "GAUGE";
         user: D2UserSchema;
         userAccesses: D2UserAccessSchema[];
         userGroupAccesses: D2UserGroupAccessSchema[];
@@ -10474,13 +10391,7 @@ export interface D2MapViewSchema {
         organisationUnitGroupSet: D2OrganisationUnitGroupSetSchema;
         organisationUnitGroupSetDimensions: D2OrganisationUnitGroupSetDimensionSchema[];
         organisationUnitLevels: number[];
-        organisationUnitSelectionMode:
-            | "SELECTED"
-            | "CHILDREN"
-            | "DESCENDANTS"
-            | "ACCESSIBLE"
-            | "CAPTURE"
-            | "ALL";
+        organisationUnitSelectionMode: "SELECTED" | "CHILDREN" | "DESCENDANTS" | "ACCESSIBLE" | "CAPTURE" | "ALL";
         organisationUnits: D2OrganisationUnitSchema[];
         parentGraph: string;
         parentGraphMap: D2MapSchema;
@@ -10742,14 +10653,8 @@ export interface D2ValidationResultSchema {
         $all: Preset<D2ValidationResult, keyof D2ValidationResult>;
         $identifiable: Preset<D2ValidationResult, FieldPresets["identifiable"]>;
         $nameable: Preset<D2ValidationResult, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2ValidationResult,
-            "created" | "rightsideValue" | "leftsideValue" | "notificationSent"
-        >;
-        $owner: Preset<
-            D2ValidationResult,
-            "created" | "rightsideValue" | "leftsideValue" | "notificationSent"
-        >;
+        $persisted: Preset<D2ValidationResult, "created" | "rightsideValue" | "leftsideValue" | "notificationSent">;
+        $owner: Preset<D2ValidationResult, "created" | "rightsideValue" | "leftsideValue" | "notificationSent">;
     };
 }
 
@@ -10953,12 +10858,7 @@ export interface D2ChartSchema {
         favorites: string[];
         filterDimensions: string[];
         filters: any[];
-        hideEmptyRowItems:
-            | "NONE"
-            | "BEFORE_FIRST"
-            | "AFTER_LAST"
-            | "BEFORE_FIRST_AFTER_LAST"
-            | "ALL";
+        hideEmptyRowItems: "NONE" | "BEFORE_FIRST" | "AFTER_LAST" | "BEFORE_FIRST_AFTER_LAST" | "ALL";
         hideLegend: boolean;
         hideSubtitle: boolean;
         hideTitle: boolean;
@@ -11001,16 +10901,7 @@ export interface D2ChartSchema {
         title: string;
         topLimit: number;
         translations: D2Translation[];
-        type:
-            | "COLUMN"
-            | "STACKED_COLUMN"
-            | "BAR"
-            | "STACKED_BAR"
-            | "LINE"
-            | "AREA"
-            | "PIE"
-            | "RADAR"
-            | "GAUGE";
+        type: "COLUMN" | "STACKED_COLUMN" | "BAR" | "STACKED_BAR" | "LINE" | "AREA" | "PIE" | "RADAR" | "GAUGE";
         user: D2UserSchema;
         userAccesses: D2UserAccessSchema[];
         userGroupAccesses: D2UserGroupAccessSchema[];
@@ -12180,23 +12071,11 @@ export interface D2TrackedEntityProgramIndicatorDimensionSchema {
         programIndicator: D2ProgramIndicatorSchema;
     };
     fieldPresets: {
-        $all: Preset<
-            D2TrackedEntityProgramIndicatorDimension,
-            keyof D2TrackedEntityProgramIndicatorDimension
-        >;
-        $identifiable: Preset<
-            D2TrackedEntityProgramIndicatorDimension,
-            FieldPresets["identifiable"]
-        >;
+        $all: Preset<D2TrackedEntityProgramIndicatorDimension, keyof D2TrackedEntityProgramIndicatorDimension>;
+        $identifiable: Preset<D2TrackedEntityProgramIndicatorDimension, FieldPresets["identifiable"]>;
         $nameable: Preset<D2TrackedEntityProgramIndicatorDimension, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2TrackedEntityProgramIndicatorDimension,
-            "filter" | "legendSet" | "programIndicator"
-        >;
-        $owner: Preset<
-            D2TrackedEntityProgramIndicatorDimension,
-            "filter" | "legendSet" | "programIndicator"
-        >;
+        $persisted: Preset<D2TrackedEntityProgramIndicatorDimension, "filter" | "legendSet" | "programIndicator">;
+        $owner: Preset<D2TrackedEntityProgramIndicatorDimension, "filter" | "legendSet" | "programIndicator">;
     };
 }
 
@@ -12271,20 +12150,11 @@ export interface D2OrganisationUnitGroupSetDimensionSchema {
         organisationUnitGroups: D2OrganisationUnitGroupSchema[];
     };
     fieldPresets: {
-        $all: Preset<
-            D2OrganisationUnitGroupSetDimension,
-            keyof D2OrganisationUnitGroupSetDimension
-        >;
+        $all: Preset<D2OrganisationUnitGroupSetDimension, keyof D2OrganisationUnitGroupSetDimension>;
         $identifiable: Preset<D2OrganisationUnitGroupSetDimension, FieldPresets["identifiable"]>;
         $nameable: Preset<D2OrganisationUnitGroupSetDimension, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2OrganisationUnitGroupSetDimension,
-            "organisationUnitGroupSet" | "organisationUnitGroups"
-        >;
-        $owner: Preset<
-            D2OrganisationUnitGroupSetDimension,
-            "organisationUnitGroupSet" | "organisationUnitGroups"
-        >;
+        $persisted: Preset<D2OrganisationUnitGroupSetDimension, "organisationUnitGroupSet" | "organisationUnitGroups">;
+        $owner: Preset<D2OrganisationUnitGroupSetDimension, "organisationUnitGroupSet" | "organisationUnitGroups">;
     };
 }
 
@@ -12299,14 +12169,8 @@ export interface D2CategoryOptionGroupSetDimensionSchema {
         $all: Preset<D2CategoryOptionGroupSetDimension, keyof D2CategoryOptionGroupSetDimension>;
         $identifiable: Preset<D2CategoryOptionGroupSetDimension, FieldPresets["identifiable"]>;
         $nameable: Preset<D2CategoryOptionGroupSetDimension, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2CategoryOptionGroupSetDimension,
-            "categoryOptionGroups" | "categoryOptionGroupSet"
-        >;
-        $owner: Preset<
-            D2CategoryOptionGroupSetDimension,
-            "categoryOptionGroups" | "categoryOptionGroupSet"
-        >;
+        $persisted: Preset<D2CategoryOptionGroupSetDimension, "categoryOptionGroups" | "categoryOptionGroupSet">;
+        $owner: Preset<D2CategoryOptionGroupSetDimension, "categoryOptionGroups" | "categoryOptionGroupSet">;
     };
 }
 
@@ -12342,27 +12206,11 @@ export interface D2MetadataVersionSchema {
         $nameable: Preset<D2MetadataVersion, FieldPresets["nameable"]>;
         $persisted: Preset<
             D2MetadataVersion,
-            | "lastUpdatedBy"
-            | "code"
-            | "created"
-            | "type"
-            | "lastUpdated"
-            | "importDate"
-            | "hashCode"
-            | "name"
-            | "id"
+            "lastUpdatedBy" | "code" | "created" | "type" | "lastUpdated" | "importDate" | "hashCode" | "name" | "id"
         >;
         $owner: Preset<
             D2MetadataVersion,
-            | "lastUpdatedBy"
-            | "code"
-            | "created"
-            | "type"
-            | "lastUpdated"
-            | "importDate"
-            | "hashCode"
-            | "name"
-            | "id"
+            "lastUpdatedBy" | "code" | "created" | "type" | "lastUpdated" | "importDate" | "hashCode" | "name" | "id"
         >;
     };
 }
@@ -12758,14 +12606,8 @@ export interface D2ProgramTrackedEntityAttributeDimensionItemSchema {
         userGroupAccesses: D2UserGroupAccessSchema[];
     };
     fieldPresets: {
-        $all: Preset<
-            D2ProgramTrackedEntityAttributeDimensionItem,
-            keyof D2ProgramTrackedEntityAttributeDimensionItem
-        >;
-        $identifiable: Preset<
-            D2ProgramTrackedEntityAttributeDimensionItem,
-            FieldPresets["identifiable"]
-        >;
+        $all: Preset<D2ProgramTrackedEntityAttributeDimensionItem, keyof D2ProgramTrackedEntityAttributeDimensionItem>;
+        $identifiable: Preset<D2ProgramTrackedEntityAttributeDimensionItem, FieldPresets["identifiable"]>;
         $nameable: Preset<D2ProgramTrackedEntityAttributeDimensionItem, FieldPresets["nameable"]>;
         $persisted: Preset<D2ProgramTrackedEntityAttributeDimensionItem, never>;
         $owner: Preset<D2ProgramTrackedEntityAttributeDimensionItem, never>;
@@ -12859,10 +12701,7 @@ export interface D2DataElementGroupSetDimensionSchema {
         $all: Preset<D2DataElementGroupSetDimension, keyof D2DataElementGroupSetDimension>;
         $identifiable: Preset<D2DataElementGroupSetDimension, FieldPresets["identifiable"]>;
         $nameable: Preset<D2DataElementGroupSetDimension, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2DataElementGroupSetDimension,
-            "dataElementGroups" | "dataElementGroupSet"
-        >;
+        $persisted: Preset<D2DataElementGroupSetDimension, "dataElementGroups" | "dataElementGroupSet">;
         $owner: Preset<D2DataElementGroupSetDimension, "dataElementGroups" | "dataElementGroupSet">;
     };
 }
@@ -12882,14 +12721,8 @@ export interface D2MinMaxDataElementSchema {
         $all: Preset<D2MinMaxDataElement, keyof D2MinMaxDataElement>;
         $identifiable: Preset<D2MinMaxDataElement, FieldPresets["identifiable"]>;
         $nameable: Preset<D2MinMaxDataElement, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2MinMaxDataElement,
-            "min" | "generated" | "max" | "dataElement" | "source" | "optionCombo"
-        >;
-        $owner: Preset<
-            D2MinMaxDataElement,
-            "min" | "generated" | "max" | "dataElement" | "source" | "optionCombo"
-        >;
+        $persisted: Preset<D2MinMaxDataElement, "min" | "generated" | "max" | "dataElement" | "source" | "optionCombo">;
+        $owner: Preset<D2MinMaxDataElement, "min" | "generated" | "max" | "dataElement" | "source" | "optionCombo">;
     };
 }
 
@@ -12970,16 +12803,10 @@ export interface D2TrackedEntityDataElementDimensionSchema {
     model: D2TrackedEntityDataElementDimension;
     fields: { dataElement: D2DataElementSchema; filter: string; legendSet: D2LegendSetSchema };
     fieldPresets: {
-        $all: Preset<
-            D2TrackedEntityDataElementDimension,
-            keyof D2TrackedEntityDataElementDimension
-        >;
+        $all: Preset<D2TrackedEntityDataElementDimension, keyof D2TrackedEntityDataElementDimension>;
         $identifiable: Preset<D2TrackedEntityDataElementDimension, FieldPresets["identifiable"]>;
         $nameable: Preset<D2TrackedEntityDataElementDimension, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2TrackedEntityDataElementDimension,
-            "filter" | "legendSet" | "dataElement"
-        >;
+        $persisted: Preset<D2TrackedEntityDataElementDimension, "filter" | "legendSet" | "dataElement">;
         $owner: Preset<D2TrackedEntityDataElementDimension, "filter" | "legendSet" | "dataElement">;
     };
 }
@@ -13101,14 +12928,8 @@ export interface D2InterpretationCommentSchema {
         $all: Preset<D2InterpretationComment, keyof D2InterpretationComment>;
         $identifiable: Preset<D2InterpretationComment, FieldPresets["identifiable"]>;
         $nameable: Preset<D2InterpretationComment, FieldPresets["nameable"]>;
-        $persisted: Preset<
-            D2InterpretationComment,
-            "created" | "lastUpdated" | "mentions" | "text" | "id" | "user"
-        >;
-        $owner: Preset<
-            D2InterpretationComment,
-            "created" | "lastUpdated" | "mentions" | "text" | "id" | "user"
-        >;
+        $persisted: Preset<D2InterpretationComment, "created" | "lastUpdated" | "mentions" | "text" | "id" | "user">;
+        $owner: Preset<D2InterpretationComment, "created" | "lastUpdated" | "mentions" | "text" | "id" | "user">;
     };
 }
 
@@ -13159,25 +12980,11 @@ export interface D2ColorSchema {
         $nameable: Preset<D2Color, FieldPresets["nameable"]>;
         $persisted: Preset<
             D2Color,
-            | "lastUpdatedBy"
-            | "code"
-            | "color"
-            | "created"
-            | "lastUpdated"
-            | "translations"
-            | "name"
-            | "id"
+            "lastUpdatedBy" | "code" | "color" | "created" | "lastUpdated" | "translations" | "name" | "id"
         >;
         $owner: Preset<
             D2Color,
-            | "lastUpdatedBy"
-            | "code"
-            | "color"
-            | "created"
-            | "lastUpdated"
-            | "translations"
-            | "name"
-            | "id"
+            "lastUpdatedBy" | "code" | "color" | "created" | "lastUpdated" | "translations" | "name" | "id"
         >;
     };
 }

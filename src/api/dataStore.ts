@@ -59,9 +59,7 @@ export class DataStore {
             })
             .flatMap(response => {
                 if (response.status === 404) {
-                    return d2Api
-                        .request<UpdateResponse>({ method: "post", ...config })
-                        .map(validateResponse);
+                    return d2Api.request<UpdateResponse>({ method: "post", ...config }).map(validateResponse);
                 } else {
                     const voidResponse = { ...response, data: validateResponse(response) };
                     return D2ApiResponse.build({ response: Promise.resolve(voidResponse) });

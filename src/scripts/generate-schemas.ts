@@ -275,9 +275,7 @@ async function generateSchema(instance: Instance) {
                 _.keyBy(
                     models.map(model => {
                         const schema = _.pick(model, schemaProperties);
-                        const properties = model.properties.map(props =>
-                            _.pick(props, schemaFieldProperties)
-                        );
+                        const properties = model.properties.map(props => _.pick(props, schemaFieldProperties));
 
                         return { ...schema, properties };
                     }),
@@ -286,9 +284,7 @@ async function generateSchema(instance: Instance) {
             )}
 
         export type D2ModelSchemas = {
-            ${models
-                .map(model => `${model.plural}: ${getModelName(model.klass)}Schema`)
-                .join(",\n")}
+            ${models.map(model => `${model.plural}: ${getModelName(model.klass)}Schema`).join(",\n")}
         }
     `;
 

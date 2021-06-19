@@ -180,25 +180,11 @@ export class Events {
         });
     }
 
-    post(
-        params: EventsPostParams,
-        request: EventsPostRequest
-    ): D2ApiResponse<HttpResponse<EventsPostResponse>> {
-        return this.d2Api.post<HttpResponse<EventsPostResponse>>(
-            "/events",
-            { ...params, async: false },
-            request
-        );
+    post(params: EventsPostParams, request: EventsPostRequest): D2ApiResponse<HttpResponse<EventsPostResponse>> {
+        return this.d2Api.post<HttpResponse<EventsPostResponse>>("/events", { ...params, async: false }, request);
     }
 
-    postAsync(
-        params: EventsPostParams,
-        request: EventsPostRequest
-    ): D2ApiResponse<AsyncPostResponse<"EVENT_IMPORT">> {
-        return this.d2Api.post<AsyncPostResponse<"EVENT_IMPORT">>(
-            "/events",
-            { ...params, async: true },
-            request
-        );
+    postAsync(params: EventsPostParams, request: EventsPostRequest): D2ApiResponse<AsyncPostResponse<"EVENT_IMPORT">> {
+        return this.d2Api.post<AsyncPostResponse<"EVENT_IMPORT">>("/events", { ...params, async: true }, request);
     }
 }

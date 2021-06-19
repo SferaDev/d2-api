@@ -11,10 +11,7 @@ export interface D2ApiOptions {
 }
 
 export type IndexedModels<D2ApiDefinition extends D2ApiDefinitionBase> = {
-    [ModelKey in keyof D2ApiDefinition["schemas"]]: Model<
-        D2ApiDefinition,
-        D2ApiDefinition["schemas"][ModelKey]
-    >;
+    [ModelKey in keyof D2ApiDefinition["schemas"]]: Model<D2ApiDefinition, D2ApiDefinition["schemas"][ModelKey]>;
 };
 
 export interface D2ApiRequest extends HttpRequest {

@@ -133,20 +133,14 @@ export class DataValues {
     constructor(public d2Api: D2ApiGeneric) {}
 
     getSet(params: DataValueSetsGetRequest): D2ApiResponse<DataValueSetsGetResponse> {
-        return this.d2Api
-            .get<DataValueSetsGetResponse>("/dataValueSets", params)
-            .map(res => res.data);
+        return this.d2Api.get<DataValueSetsGetResponse>("/dataValueSets", params).map(res => res.data);
     }
 
     postSet(
         params: DataValueSetsPostParams,
         request: DataValueSetsPostRequest
     ): D2ApiResponse<DataValueSetsPostResponse> {
-        return this.d2Api.post<DataValueSetsPostResponse>(
-            "/dataValueSets",
-            { ...params, async: false },
-            request
-        );
+        return this.d2Api.post<DataValueSetsPostResponse>("/dataValueSets", { ...params, async: false }, request);
     }
 
     postSetAsync(

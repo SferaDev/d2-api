@@ -14,12 +14,12 @@ interface CacheOptions {
 
 // Decorator to cache class properties and methods
 export const cache = (options: CacheOptions = {}): any =>
-    function(_target: unknown, _key: string | symbol, descriptor: PropertyDescriptor) {
+    function (_target: unknown, _key: string | symbol, descriptor: PropertyDescriptor) {
         const prop = descriptor.value ? "value" : "get";
         const originalFunction = descriptor[prop];
         const map: FunctionCache = new Map();
 
-        descriptor[prop] = function(...args: unknown[]) {
+        descriptor[prop] = function (...args: unknown[]) {
             // Serialize arguments to build a key
             const { maxArgs = args.length } = options;
             const position = Math.max(0, maxArgs);
@@ -45,12 +45,10 @@ export const cache = (options: CacheOptions = {}): any =>
     };
 
 // Wrapper to memoize functions
-export function memoize<Obj extends object | void, Args extends any[], U>(
-    fn: (...args: Args) => U
-) {
+export function memoize<Obj extends object | void, Args extends any[], U>(fn: (...args: Args) => U) {
     const map: ArgumentsCache = new Map();
 
-    const result = function(this: Obj, ...args: Args) {
+    const result = function (this: Obj, ...args: Args) {
         const key = JSON.stringify(args);
         if (map.has(key)) return map.get(key);
 

@@ -42,9 +42,7 @@ export class Files {
             })
             .flatMap(({ data }) => {
                 const fileResourceId =
-                    data.response && data.response.fileResource
-                        ? data.response.fileResource.id
-                        : undefined;
+                    data.response && data.response.fileResource ? data.response.fileResource.id : undefined;
 
                 const document = { id, name, url: fileResourceId };
 

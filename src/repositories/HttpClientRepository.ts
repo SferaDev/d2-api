@@ -8,12 +8,13 @@ export interface HttpClientRepository {
 
 export type Method = "get" | "post" | "put" | "delete";
 
-export type ParamValue = string | number | boolean | undefined;
+type ParamValue = string | number | boolean;
+export type Params = Record<string, ParamValue | ParamValue[] | undefined>;
 
 export interface HttpRequest {
     method: Method;
     url: string;
-    params?: Record<string, ParamValue | ParamValue[]>;
+    params?: Params;
     data?: unknown;
     dataType?: "json" | "raw";
     validateStatus?(status: number): boolean;
