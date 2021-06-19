@@ -197,9 +197,12 @@ type Instance = { version: string; url: string; isDeprecated?: boolean };
 const instances: Instance[] = [
     { version: "2.30", url: "http://admin:district@localhost:8030", isDeprecated: true },
     { version: "2.31", url: "http://admin:district@localhost:8031", isDeprecated: true },
-    { version: "2.32", url: "https://admin:district@play.dhis2.org/2.32" },
+    { version: "2.32", url: "http://admin:district@localhost:8032", isDeprecated: true },
     { version: "2.33", url: "https://admin:district@play.dhis2.org/2.33" },
     { version: "2.34", url: "https://admin:district@play.dhis2.org/2.34" },
+    { version: "2.35", url: "https://admin:district@play.dhis2.org/2.35" },
+    { version: "2.36", url: "https://admin:district@play.dhis2.org/2.36" },
+    { version: "2.37", url: "https://admin:district@play.dhis2.org/dev" },
 ];
 
 async function generateSchema(instance: Instance) {
@@ -207,9 +210,11 @@ async function generateSchema(instance: Instance) {
     const schemaUrl = joinPath(url, "/api/schemas.json?fields=:all,metadata");
     console.debug(`GET ${schemaUrl}`);
 
-    const { schemas: allSchemas } = (await axios.get(schemaUrl, {
-        validateStatus: (status: number) => status >= 200 && status < 300,
-    })).data as { schemas: Schema[] };
+    const { schemas: allSchemas } = (
+        await axios.get(schemaUrl, {
+            validateStatus: (status: number) => status >= 200 && status < 300,
+        })
+    ).data as { schemas: Schema[] };
 
     const schemas = _.sortBy(allSchemas, schema => _.last(schema.klass.split(".")));
     const models = schemas.filter(schema => !!schema.href);

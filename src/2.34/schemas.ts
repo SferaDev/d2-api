@@ -3189,6 +3189,7 @@ export type D2ProgramRuleAction = {
     created: string;
     data: string;
     dataElement: D2DataElement;
+    displayContent: string;
     displayName: string;
     evaluationEnvironments: never[];
     evaluationTime: "ON_DATA_ENTRY" | "ON_COMPLETE" | "ALWAYS";
@@ -3398,6 +3399,7 @@ export type D2ProgramStageInstance = {
     creatableInSearchScope: boolean;
     created: string;
     createdAtClient: string;
+    createdByUserInfo: any;
     deleted: boolean;
     displayName: string;
     dueDate: string;
@@ -3412,6 +3414,7 @@ export type D2ProgramStageInstance = {
     lastUpdated: string;
     lastUpdatedAtClient: string;
     lastUpdatedBy: D2User;
+    lastUpdatedByUserInfo: any;
     messageConversations: D2MessageConversation[];
     name: string;
     organisationUnit: D2OrganisationUnit;
@@ -3433,6 +3436,7 @@ export type D2ProgramStageInstanceFilter = {
     code: Id;
     created: string;
     description: string;
+    displayDescription: string;
     displayName: string;
     eventQueryCriteria: any;
     externalAccess: boolean;
@@ -4193,6 +4197,7 @@ export type D2TrackedEntityInstanceFilter = {
     code: Id;
     created: string;
     description: string;
+    displayDescription: string;
     displayName: string;
     enrollmentCreatedPeriod: any;
     enrollmentStatus: "ACTIVE" | "COMPLETED" | "CANCELLED";
@@ -11179,6 +11184,7 @@ export interface D2ProgramRuleActionSchema {
         created: string;
         data: string;
         dataElement: D2DataElementSchema;
+        displayContent: string;
         displayName: string;
         evaluationEnvironments: never[];
         evaluationTime: "ON_DATA_ENTRY" | "ON_COMPLETE" | "ALWAYS";
@@ -11237,6 +11243,7 @@ export interface D2ProgramRuleActionSchema {
             | "content"
             | "trackedEntityAttribute"
             | "lastUpdated"
+            | "translations"
             | "programIndicator"
             | "id"
             | "programRule"
@@ -11260,6 +11267,7 @@ export interface D2ProgramRuleActionSchema {
             | "content"
             | "trackedEntityAttribute"
             | "lastUpdated"
+            | "translations"
             | "programIndicator"
             | "id"
             | "programRule"
@@ -11667,6 +11675,7 @@ export interface D2ProgramStageInstanceSchema {
         creatableInSearchScope: boolean;
         created: string;
         createdAtClient: string;
+        createdByUserInfo: any;
         deleted: boolean;
         displayName: string;
         dueDate: string;
@@ -11681,6 +11690,7 @@ export interface D2ProgramStageInstanceSchema {
         lastUpdated: string;
         lastUpdatedAtClient: string;
         lastUpdatedBy: D2UserSchema;
+        lastUpdatedByUserInfo: any;
         messageConversations: D2MessageConversationSchema[];
         name: string;
         organisationUnit: D2OrganisationUnitSchema;
@@ -11707,10 +11717,12 @@ export interface D2ProgramStageInstanceSchema {
             | "dueDate"
             | "createdAtClient"
             | "messageConversations"
+            | "lastUpdatedByUserInfo"
             | "lastUpdated"
             | "eventDataValues"
             | "relationshipItems"
             | "id"
+            | "createdByUserInfo"
             | "assignedUser"
             | "programStage"
             | "comments"
@@ -11733,9 +11745,11 @@ export interface D2ProgramStageInstanceSchema {
             | "dueDate"
             | "createdAtClient"
             | "messageConversations"
+            | "lastUpdatedByUserInfo"
             | "lastUpdated"
             | "eventDataValues"
             | "id"
+            | "createdByUserInfo"
             | "assignedUser"
             | "programStage"
             | "comments"
@@ -11762,6 +11776,7 @@ export interface D2ProgramStageInstanceFilterSchema {
         code: Id;
         created: string;
         description: string;
+        displayDescription: string;
         displayName: string;
         eventQueryCriteria: any;
         externalAccess: boolean;
@@ -11786,34 +11801,36 @@ export interface D2ProgramStageInstanceFilterSchema {
         $nameable: Preset<D2ProgramStageInstanceFilter, FieldPresets["nameable"]>;
         $persisted: Preset<
             D2ProgramStageInstanceFilter,
-            | "lastUpdatedBy"
-            | "programStage"
             | "eventQueryCriteria"
-            | "userGroupAccesses"
-            | "created"
             | "publicAccess"
             | "description"
             | "program"
             | "lastUpdated"
+            | "translations"
+            | "id"
+            | "lastUpdatedBy"
+            | "programStage"
+            | "userGroupAccesses"
+            | "created"
             | "userAccesses"
             | "name"
-            | "id"
             | "user"
         >;
         $owner: Preset<
             D2ProgramStageInstanceFilter,
-            | "lastUpdatedBy"
-            | "programStage"
             | "eventQueryCriteria"
-            | "userGroupAccesses"
-            | "created"
             | "publicAccess"
             | "description"
             | "program"
             | "lastUpdated"
+            | "translations"
+            | "id"
+            | "lastUpdatedBy"
+            | "programStage"
+            | "userGroupAccesses"
+            | "created"
             | "userAccesses"
             | "name"
-            | "id"
             | "user"
         >;
     };
@@ -13209,6 +13226,7 @@ export interface D2TrackedEntityInstanceFilterSchema {
         code: Id;
         created: string;
         description: string;
+        displayDescription: string;
         displayName: string;
         enrollmentCreatedPeriod: any;
         enrollmentStatus: "ACTIVE" | "COMPLETED" | "CANCELLED";
@@ -13242,6 +13260,7 @@ export interface D2TrackedEntityInstanceFilterSchema {
             | "program"
             | "enrollmentCreatedPeriod"
             | "lastUpdated"
+            | "translations"
             | "id"
             | "lastUpdatedBy"
             | "created"
@@ -13259,6 +13278,7 @@ export interface D2TrackedEntityInstanceFilterSchema {
             | "program"
             | "enrollmentCreatedPeriod"
             | "lastUpdated"
+            | "translations"
             | "id"
             | "lastUpdatedBy"
             | "created"
@@ -27956,7 +27976,7 @@ export const models: Record<keyof D2ModelSchemas, D2SchemaProperties> = {
         displayName: "Program Rule Action",
         collectionName: "programRuleActions",
         nameableObject: false,
-        translatable: false,
+        translatable: true,
         identifiableObject: true,
         dataShareable: false,
         name: "programRuleAction",
@@ -28040,6 +28060,7 @@ export const models: Record<keyof D2ModelSchemas, D2SchemaProperties> = {
                 propertyType: "DATE",
                 klass: "java.util.Date",
             },
+            { name: "displayContent", propertyType: "TEXT", klass: "java.lang.String" },
             {
                 name: "translation",
                 fieldName: "translations",
@@ -29063,6 +29084,12 @@ export const models: Record<keyof D2ModelSchemas, D2SchemaProperties> = {
                 itemKlass: "org.hisp.dhis.message.MessageConversation",
             },
             {
+                name: "lastUpdatedByUserInfo",
+                fieldName: "lastUpdatedByUserInfo",
+                propertyType: "COMPLEX",
+                klass: "org.hisp.dhis.program.UserInfoSnapshot",
+            },
+            {
                 name: "externalAccess",
                 fieldName: "externalAccess",
                 propertyType: "BOOLEAN",
@@ -29100,6 +29127,12 @@ export const models: Record<keyof D2ModelSchemas, D2SchemaProperties> = {
             },
             { name: "id", fieldName: "uid", propertyType: "IDENTIFIER", klass: "java.lang.String" },
             { name: "href", fieldName: "href", propertyType: "URL", klass: "java.lang.String" },
+            {
+                name: "createdByUserInfo",
+                fieldName: "createdByUserInfo",
+                propertyType: "COMPLEX",
+                klass: "org.hisp.dhis.program.UserInfoSnapshot",
+            },
             {
                 name: "assignedUser",
                 fieldName: "assignedUser",
@@ -29231,7 +29264,7 @@ export const models: Record<keyof D2ModelSchemas, D2SchemaProperties> = {
         displayName: "Program Stage Instance Filter",
         collectionName: "eventFilters",
         nameableObject: false,
-        translatable: false,
+        translatable: true,
         identifiableObject: true,
         dataShareable: false,
         name: "programStageInstanceFilter",
@@ -29247,18 +29280,6 @@ export const models: Record<keyof D2ModelSchemas, D2SchemaProperties> = {
                 itemKlass: "java.lang.String",
             },
             {
-                name: "lastUpdatedBy",
-                fieldName: "lastUpdatedBy",
-                propertyType: "REFERENCE",
-                klass: "org.hisp.dhis.user.User",
-            },
-            {
-                name: "programStage",
-                fieldName: "programStage",
-                propertyType: "IDENTIFIER",
-                klass: "java.lang.String",
-            },
-            {
                 name: "eventQueryCriteria",
                 fieldName: "eventQueryCriteria",
                 propertyType: "COMPLEX",
@@ -29271,24 +29292,10 @@ export const models: Record<keyof D2ModelSchemas, D2SchemaProperties> = {
                 klass: "org.hisp.dhis.security.acl.Access",
             },
             {
-                name: "userGroupAccess",
-                fieldName: "userGroupAccesses",
-                propertyType: "COLLECTION",
-                itemPropertyType: "COMPLEX",
-                klass: "java.util.Set",
-                itemKlass: "org.hisp.dhis.user.UserGroupAccess",
-            },
-            {
                 name: "code",
                 fieldName: "code",
                 propertyType: "IDENTIFIER",
                 klass: "java.lang.String",
-            },
-            {
-                name: "created",
-                fieldName: "created",
-                propertyType: "DATE",
-                klass: "java.util.Date",
             },
             {
                 name: "displayName",
@@ -29301,14 +29308,6 @@ export const models: Record<keyof D2ModelSchemas, D2SchemaProperties> = {
                 fieldName: "publicAccess",
                 propertyType: "TEXT",
                 klass: "java.lang.String",
-            },
-            {
-                name: "attributeValue",
-                fieldName: "attributeValues",
-                propertyType: "COLLECTION",
-                itemPropertyType: "COMPLEX",
-                klass: "java.util.Set",
-                itemKlass: "org.hisp.dhis.attribute.AttributeValue",
             },
             {
                 name: "description",
@@ -29342,6 +29341,48 @@ export const models: Record<keyof D2ModelSchemas, D2SchemaProperties> = {
                 klass: "java.util.Set",
                 itemKlass: "org.hisp.dhis.translation.Translation",
             },
+            { name: "href", fieldName: "href", propertyType: "URL", klass: "java.lang.String" },
+            { name: "id", fieldName: "uid", propertyType: "IDENTIFIER", klass: "java.lang.String" },
+            {
+                name: "displayDescription",
+                fieldName: "displayDescription",
+                propertyType: "TEXT",
+                klass: "java.lang.String",
+            },
+            {
+                name: "lastUpdatedBy",
+                fieldName: "lastUpdatedBy",
+                propertyType: "REFERENCE",
+                klass: "org.hisp.dhis.user.User",
+            },
+            {
+                name: "programStage",
+                fieldName: "programStage",
+                propertyType: "IDENTIFIER",
+                klass: "java.lang.String",
+            },
+            {
+                name: "userGroupAccess",
+                fieldName: "userGroupAccesses",
+                propertyType: "COLLECTION",
+                itemPropertyType: "COMPLEX",
+                klass: "java.util.Set",
+                itemKlass: "org.hisp.dhis.user.UserGroupAccess",
+            },
+            {
+                name: "created",
+                fieldName: "created",
+                propertyType: "DATE",
+                klass: "java.util.Date",
+            },
+            {
+                name: "attributeValue",
+                fieldName: "attributeValues",
+                propertyType: "COLLECTION",
+                itemPropertyType: "COMPLEX",
+                klass: "java.util.Set",
+                itemKlass: "org.hisp.dhis.attribute.AttributeValue",
+            },
             {
                 name: "userAccess",
                 fieldName: "userAccesses",
@@ -29351,8 +29392,6 @@ export const models: Record<keyof D2ModelSchemas, D2SchemaProperties> = {
                 itemKlass: "org.hisp.dhis.user.UserAccess",
             },
             { name: "name", fieldName: "name", propertyType: "TEXT", klass: "java.lang.String" },
-            { name: "href", fieldName: "href", propertyType: "URL", klass: "java.lang.String" },
-            { name: "id", fieldName: "uid", propertyType: "IDENTIFIER", klass: "java.lang.String" },
             {
                 name: "user",
                 fieldName: "user",
@@ -32547,7 +32586,7 @@ export const models: Record<keyof D2ModelSchemas, D2SchemaProperties> = {
         displayName: "Tracked Entity Instance Filter",
         collectionName: "trackedEntityInstanceFilters",
         nameableObject: false,
-        translatable: false,
+        translatable: true,
         identifiableObject: true,
         dataShareable: false,
         name: "trackedEntityInstanceFilter",
@@ -32626,6 +32665,12 @@ export const models: Record<keyof D2ModelSchemas, D2SchemaProperties> = {
             },
             { name: "id", fieldName: "uid", propertyType: "IDENTIFIER", klass: "java.lang.String" },
             { name: "href", fieldName: "href", propertyType: "URL", klass: "java.lang.String" },
+            {
+                name: "displayDescription",
+                fieldName: "displayDescription",
+                propertyType: "TEXT",
+                klass: "java.lang.String",
+            },
             {
                 name: "lastUpdatedBy",
                 fieldName: "lastUpdatedBy",
